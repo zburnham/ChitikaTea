@@ -7,8 +7,15 @@
  * 
  */
 
-class Category extends CI_Model
+include('./base.php');
+
+class Category extends Base
 {
+    /**
+     * Database table for persisting data.
+     */
+    const TABLE = 'Categories';
+
     /**
      * Auto-incrementing ID.
      *
@@ -33,6 +40,14 @@ class Category extends CI_Model
         parent::__construct();
     }
     
+    public function create()
+    {
+        $data = array(
+            'name' => $this->input->post('category_name'),
+        );
+        return $this->db->insert(self::TABLE, $data);
+    }
+
     /**
      * @return int
      */

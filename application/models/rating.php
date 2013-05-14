@@ -7,8 +7,15 @@
  * 
  */
 
-class Rating extends CI_Model
-{
+include('./base.php');
+
+class Rating extends Base
+{ 
+    /**
+     * Database table for persisting data.
+     */
+    const TABLE = 'Ratings';
+    
     /**
      * Auto-incrementing ID.
      *
@@ -59,6 +66,36 @@ class Rating extends CI_Model
     public function __construct()
     {
         parent::__construct();
+    }
+    
+    public function create()
+    {
+        $data = array(
+            'body' => $this->input->post('body'),
+            'color' => $this->input->post('color'),
+            'taste' => $this->input->post('taste'),
+            'tasters_ID' => $this->input->post('tasters_ID'),
+            'teas_ID'=> $this->input->post('teas_ID')
+        );
+        
+        return $this->db->insert(self::TABLE, $data);
+    }
+    
+    public function getTeaAverages($teas_ID)
+    {
+        $query = $this->db->get_where(self::TABLE, array('teas_ID' => $teas_ID));
+        $numberOfRatings = $query->num_rows();
+        $body = $color = $taste = 0;
+        foreach($query->result_array() as $row) {
+            $body += $row['body'];
+            $color += $row['color'];
+            $taste += $row['taste'];
+        }
+        $averages = array();
+        $averages['body'] = $body / $numberOfRatings;
+        $averages['color'] = $color / $numberOfRatings;
+        $averages['taste'] = $taste / $numberOfRatings;
+        $averages['count'] = $numberOfRatings;
     }
     
     /**
