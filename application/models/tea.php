@@ -39,4 +39,63 @@ class Tea extends CI_Model
     {
         parent::__construct();
     }
+    
+    public function getTopFive()
+    {
+        
+    }
+
+    /**
+     * @return int
+     */
+    public function getID()
+    {
+        return $this->ID;
+    }
+
+    /**
+     * @param int $ID
+     * @return \Tea
+     */
+    public function setID($ID)
+    {
+        $this->ID = $ID;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getName()
+    {
+        return $this->name;
+    }
+
+    /**
+     * @param string $name
+     * @return \Tea
+     */
+    public function setName($name)
+    {
+        $this->name = $name;
+        return $this;
+    }
+
+    /**
+     * @return int
+     */
+    public function getCategories_ID()
+    {
+        return $this->categories_ID;
+    }
+
+    /**
+     * @param int $categories_ID
+     * @return \Tea
+     */
+    public function setCategories_ID($categories_ID)
+    {
+        $this->categories_ID = $categories_ID;
+        return $this;
+    }
 }

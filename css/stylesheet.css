@@ -1,0 +1,16 @@
+root { 
+    display: block;
+}
+
+.header {
+    width: 100%;
+    height: 200px;
+}
+
+#leftlogo {
+    float: left;
+}
+
+#links {
+    float:right;
+}
