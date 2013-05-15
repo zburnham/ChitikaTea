@@ -7,14 +7,14 @@
  * 
  */
 
-include('./base.php');
+if (!class_exists('Base')) { include('base.php');}
 
 class Rating extends Base
 { 
     /**
      * Database table for persisting data.
      */
-    const TABLE = 'Ratings';
+    protected $table = 'Ratings';
     
     /**
      * Auto-incrementing ID.
@@ -83,19 +83,21 @@ class Rating extends Base
     
     public function getTeaAverages($teas_ID)
     {
-        $query = $this->db->get_where(self::TABLE, array('teas_ID' => $teas_ID));
-        $numberOfRatings = $query->num_rows();
-        $body = $color = $taste = 0;
-        foreach($query->result_array() as $row) {
-            $body += $row['body'];
-            $color += $row['color'];
-            $taste += $row['taste'];
-        }
+        $query = $this->db->get_where($this->table, array('teas_ID' => $teas_ID));
         $averages = array();
-        $averages['body'] = $body / $numberOfRatings;
-        $averages['color'] = $color / $numberOfRatings;
-        $averages['taste'] = $taste / $numberOfRatings;
-        $averages['count'] = $numberOfRatings;
+        $averages['count'] = $count = $query->num_rows();
+        if (0 < $count) {
+            $body = $color = $taste = 0;
+            foreach($query->result_array() as $row) {
+                $body += $row['body'];
+                $color += $row['color'];
+                $taste += $row['taste'];
+            }
+            $averages['body'] = $body / $count;
+            $averages['color'] = $color / $count;
+            $averages['taste'] = $taste / $count;
+        }
+        return $averages;
     }
     
     /**

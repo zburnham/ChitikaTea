@@ -40,6 +40,8 @@
 
 $route['default_controller'] = "landing";
 $route['404_override'] = '';
+$route['viewcategory'] = "viewcategory";
+$route['addtea'] = "addtea";
 
 
 /* End of file routes.php */

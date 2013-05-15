@@ -9,6 +9,9 @@
 
 class Base extends CI_Model
 {
+    
+    protected $table;
+    
     /**
      * Class constructor.  Extends initial prototype.
      * 
@@ -28,7 +31,7 @@ class Base extends CI_Model
      */
     public function load($id)
     {
-        $query = $this->db->get_where(self::TABLE, array('ID' => $id));
+        $query = $this->db->get_where($this->table, array('ID' => $id));
         return $query->row_array();
     }
     

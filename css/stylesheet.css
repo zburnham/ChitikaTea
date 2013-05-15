@@ -14,3 +14,7 @@ root {
 #links {
     float:right;
 }
+
+.login_failure {
+    color: red;
+}

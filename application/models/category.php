@@ -7,14 +7,14 @@
  * 
  */
 
-include('./base.php');
+if (!class_exists('Base')) { include('base.php');}
 
 class Category extends Base
 {
     /**
      * Database table for persisting data.
      */
-    const TABLE = 'Categories';
+    protected $table = "Categories";
 
     /**
      * Auto-incrementing ID.
@@ -48,6 +48,11 @@ class Category extends Base
         return $this->db->insert(self::TABLE, $data);
     }
 
+    public function getList()
+    {
+        return $this->db->get($this->table)->result_array();
+    }
+    
     /**
      * @return int
      */

@@ -7,14 +7,14 @@
  * 
  */
 
-include('./base.php');
+if (!class_exists('Base')) { include('base.php');}
 
 class Taster extends Base
 {
     /**
      * Database table for persisting data.
      */
-    const TABLE = 'Tasters';
+    protected $table = "Tasters";
     
     /**
      * Auto-incrementing ID.
@@ -52,6 +52,7 @@ class Taster extends Base
     public function __construct()
     {
         parent::__construct();
+        $this->load->library('encrypt');
     }
     
     public function create()
@@ -61,7 +62,7 @@ class Taster extends Base
             'name'  => $this->input->post('name'),
             'password' => $this->encrypt->encode($this->input->post('password')),
         );
-        return $this->db->insert(self::TABLE, $data);
+        return $this->db->insert($this->table, $data);
     }
     
     /**
@@ -74,7 +75,7 @@ class Taster extends Base
         $login = $this->input->post('login');
         $encryptedPassword = $this->encrypt->encode($this->input->post('password'));
         
-        $query = $this->db->get_where(self::TABLE, array('login' => $login, 'password' => $encryptedPassword));
+        $query = $this->db->get_where($this->table, array('login' => $login, 'password' => $encryptedPassword));
         if (0 < $query->num_rows()) {
             return true;
         }

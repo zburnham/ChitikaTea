@@ -7,14 +7,14 @@
  * 
  */
 
-include('./base.php');
+if (!class_exists('Base')) { include('base.php');}
 
 class Tea extends Base
 {
     /**
      * Database table for persisting data.
      */
-    const TABLE = 'Teas';
+    protected $table = "Teas";
     
     /**
      * Auto-incrementing ID.
@@ -55,11 +55,6 @@ class Tea extends Base
             'categories_ID' => $this->input->post('categories_ID'),
         );
         return $this->db->insert(self::TABLE, $data);
-    }
-    
-    public function getTopFive()
-    {
-        
     }
 
     /**
