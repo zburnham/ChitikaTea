@@ -1,5 +1,5 @@
-<p>Name: <?=$tea['name']?></p>
-<p>Category: <?=$category['name']?></p>
+<div class="box">Name: <?=$tea['tea_name']?> (ID: <?=$tea['ID']?>)<br>
+Category: <?=$category['name']?></div>
 <?php if (0 < $averages['count']): ?>
 <p>Average Ratings: (Total ratings: <?=$averages['count']?>)</p>
 <ul>
@@ -8,7 +8,8 @@
     <li>Body: <?=$averages['body']?></li>
 </ul>
 <p>Individual Ratings:</p>
-<table id="ratings">
+<div class="box">
+<table class="ratings">
     <tr>
         <th>Taster</th><th>Taste</th><th>Body</th><th>Color</th><th>Notes</th>
     </tr>
@@ -22,6 +23,8 @@
     </tr>
     <?php endforeach; ?>
 </table>
+</div>
 <?php else: ?>
 <p>No ratings found.</p>
 <?php endif; ?>
+<p><a href="<?php echo base_url('/addrating?id=' . $tea['ID']);?>">Add a rating</a></p>

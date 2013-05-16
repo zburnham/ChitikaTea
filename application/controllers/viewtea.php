@@ -17,8 +17,7 @@ class Viewtea extends MY_Controller
         $data['tea'] = $this->tea->load($this->input->get('id'));
         $data['category'] = $this->category->load($data['tea']['categories_ID']);
         $data['averages'] = $this->rating->getTeaAverages($data['tea']['ID']);
-        $data['ratings'] = $this->rating->getAllRatings($data['tea']['ID']);
-        
+        $data['ratings'] = $this->rating->getAllRatingsByTea($data['tea']['ID']);
         
         $this->load->view('tea_head');
         $this->load->view('tea_header');

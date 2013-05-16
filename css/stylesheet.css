@@ -18,3 +18,27 @@ root {
 .login_failure {
     color: red;
 }
+
+.box {
+    border: 1px solid black;
+}
+
+.container {
+    width: 50%;
+    margin: auto;
+}
+
+#tabs ul {
+    border-bottom-style:solid;
+    list-style:none;
+    margin:0;
+}
+
+#tabs li {
+    display: inline;
+    border: solid;
+    border-width: 1px 1px 0 1px;
+    margin: 0 0.5em 0 0;
+    padding-left: 4px;
+    padding-right: 4px;
+}

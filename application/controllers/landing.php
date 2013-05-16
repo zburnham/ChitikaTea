@@ -19,7 +19,6 @@ class Landing extends MY_Controller
         $this->load->view('tea_header');
         $this->load->view('tea_login', $this->getLogged_in());
         $this->load->view('tea_tabs');
-        $this->load->view('tea_body', $data);
         $this->load->view('tea_footer');
     }
 }

@@ -129,15 +129,33 @@ class Rating extends Base
     /**
      * Returns all individual ratings for a given tea.
      * 
-     * @param type $teas_ID
+     * @param string $tasterOrTea Selection criteria.
+     * @param int $ID
      * @return array 
      */
-    public function getAllRatings($teas_ID)
+    public function getAllRatingsByTea($teas_ID)
     {
-        $this->db->select('*')
-                ->from($this->table)
-                ->join('Tasters','Tasters.ID = ' . $this->table . '.tasters_ID')
+        $this->db->from($this->table)
+                ->join('Teas', 'Teas.ID = ' . $this->table . '.teas_ID', 'left')
+                ->join('Tasters', 'Tasters.ID = ' . $this->table . '.tasters_ID', 'left')
                 ->where('teas_ID', $teas_ID);
+        return $this->db->get()->result_array();
+    }
+    
+        /**
+     * Returns all individual ratings for a given tea.
+     * 
+     * @param string $tasterOrTea Selection criteria.
+     * @param int $ID
+     * @return array 
+     */
+    public function getAllRatingsByTaster($tasters_ID)
+    {        
+        $this->db->from($this->table)
+                ->join('Tasters','Tasters.ID = ' . $this->table . '.tasters_ID', 'left')
+                ->join('Teas', 'Teas.ID = ' . $this->table . '.teas_ID', 'left')
+                ->join('Categories', 'Categories.ID = Teas.categories_ID', 'left')
+                ->where('tasters_ID', $tasters_ID);
         return $this->db->get()->result_array();
     }
     

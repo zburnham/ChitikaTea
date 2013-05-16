@@ -2,8 +2,8 @@
 
 <?php echo form_open('addtea'); ?>
 
-<label for="name">Name: </label>
-<input type="text" name="name" /><br>
+<label for="tea_name">Name: </label>
+<input type="text" name="tea_name" /><br>
 
 <label for="categories_ID">Category: </label>
 <select name="categories_ID">

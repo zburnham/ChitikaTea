@@ -7,13 +7,15 @@ class Viewcategory extends CI_Controller
         parent::__construct();
         $this->load->database();
         $this->load->model('category');
+        $this->load->model('tea');
         $this->load->helper('url');
     }
     
     public function index()
     {
         $data = array();
-        $data['id'] = $this->input->get('id');
+        $data['category'] = $this->category->load($this->input->get('id'));
+        $data['teas'] = $this->tea->getAllInCategory();
         
         $this->load->view('tea_head');
         $this->load->view('tea_header');

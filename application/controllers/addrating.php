@@ -20,7 +20,8 @@ class Addrating extends MY_Controller
         if (!$this->tea_auth->check()) {
             redirect();
         }
-        $data['teas_ID'] = $this->input->get('id');
+        
+        $data['teas_ID'] = ($this->input->get('id')) ?: $this->input->post('teas_ID');
         $taster = $this->taster->load($this->session->userdata('ID'));
         $data['tasters_ID'] = $taster['ID'];
         
@@ -40,7 +41,7 @@ class Addrating extends MY_Controller
             $this->load->view('forms/tea_rating.php', $data);
         } else {
             $this->rating->create();
-            redirect();
+            redirect('viewtea?id=' . $data['teas_ID']);
         }
         
         $this->load->view('tea_footer');

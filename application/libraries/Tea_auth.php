@@ -25,6 +25,7 @@ class Tea_auth
         $this->CI->load->model('taster');
         $this->CI->load->library('encrypt');
         $this->CI->load->library('session');
+        $this->CI->load->helper('url');
     }
     
     /**

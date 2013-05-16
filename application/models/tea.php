@@ -30,7 +30,7 @@ class Tea extends Base
      *
      * @var string
      */
-    protected $name;
+    protected $tea_name;
     
     /**
      * Category ID (foreign key.)
@@ -49,14 +49,47 @@ class Tea extends Base
         parent::__construct();
     }
     
-    
+    /**
+     * Creates a new entry.
+     * 
+     * @return bool
+     */
     public function create()
     {
         $data = array(
-            'name' => $this->input->post('name'),
+            'tea_name' => $this->input->post('tea_name'),
             'categories_ID' => $this->input->post('categories_ID'),
         );
         return $this->db->insert($this->table, $data);
+    }
+    
+    /**
+     * Simple string-matching search function.
+     * 
+     * @return array
+     */
+    public function search()
+    {
+        $keyword = '%' . trim($this->input->post('keyword')) . '%';
+        $this->db
+                ->select('Categories.name, tea_name, Teas.ID')
+                ->from($this->table)
+                ->join('Categories', 'Categories.ID = ' . $this->table . '.categories_ID')
+                ->where('tea_name LIKE ', $keyword);
+        return array('search_results' => $this->db->get()->result_array());
+    }
+    
+    /**
+     * Finds all teas in a given category.
+     * 
+     * @return array
+     */
+    public function getAllInCategory()
+    {
+        $id = $this->input->get('id');
+        return $this->db
+                ->get_where($this->table, array('categories_ID' => $id))
+                ->result_array();
     }
 
     /**
@@ -80,18 +113,18 @@ class Tea extends Base
     /**
      * @return string
      */
-    public function getName()
+    public function getTea_name()
     {
-        return $this->name;
+        return $this->tea_name;
     }
 
     /**
      * @param string $name
      * @return \Tea
      */
-    public function setName($name)
+    public function setTea_name($tea_name)
     {
-        $this->name = $name;
+        $this->tea_name = $tea_name;
         return $this;
     }
 
