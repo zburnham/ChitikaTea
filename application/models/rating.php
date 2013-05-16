@@ -77,7 +77,7 @@ class Rating extends Base
     /**
      * Class constructor.  Extends initial prototype.
      * 
-     * @return void
+     * @return void 
      */
     public function __construct()
     {
