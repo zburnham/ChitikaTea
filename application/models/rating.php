@@ -98,6 +98,15 @@ class Rating extends Base
         return $this->db->insert($this->table, $data);
     }
     
+    /**
+     * Returns an array of average ratings for a tea.
+     * Array keys in return:
+     * body, color, taste = averages for those three categories
+     * count = number of reviews
+     * 
+     * @param int $teas_ID
+     * @return array
+     */
     public function getTeaAverages($teas_ID)
     {
         $query = $this->db->get_where($this->table, array('teas_ID' => $teas_ID));
@@ -110,11 +119,26 @@ class Rating extends Base
                 $color += $row['color'];
                 $taste += $row['taste'];
             }
-            $averages['body'] = $body / $count;
-            $averages['color'] = $color / $count;
-            $averages['taste'] = $taste / $count;
+            $averages['body'] = number_format(round(($body / $count), 1),1);
+            $averages['color'] = number_format(round(($color / $count), 1),1);
+            $averages['taste'] = number_format(round(($taste / $count), 1),1);
         }
         return $averages;
+    }
+    
+    /**
+     * Returns all individual ratings for a given tea.
+     * 
+     * @param type $teas_ID
+     * @return array 
+     */
+    public function getAllRatings($teas_ID)
+    {
+        $this->db->select('*')
+                ->from($this->table)
+                ->join('Tasters','Tasters.ID = ' . $this->table . '.tasters_ID')
+                ->where('teas_ID', $teas_ID);
+        return $this->db->get()->result_array();
     }
     
     /**
