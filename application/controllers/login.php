@@ -9,6 +9,8 @@ class Login extends CI_Controller
         $this->load->model('taster');
         $this->load->library('session');
         $this->load->library('form_validation');
+        $this->load->library('tea_auth');
+        $this->load->helper('url');
     }
     
     public function index()
@@ -23,15 +25,15 @@ class Login extends CI_Controller
         if ($this->form_validation->run() === FALSE) {
             $this->load->view('forms/login');
         } else {
-            if ($this->taster->authenticate()) {
-                $this->session->set_userdata('login', $this->input->post('login'));
+            if ($this->tea_auth->auth($this->input->post('login'), $this->input->post('password'))) {
                 $this->load->view('login_successful');
+                redirect('');
             } else {
                 $this->load->view('login_failure');
                 $this->load->view('forms/login');
             }
         }
-
+        
         $this->load->view('tea_footer');
     }
 }

@@ -11,8 +11,8 @@ root {
     float: left;
 }
 
-#links {
-    float:right;
+#loggedin {
+    float: right;
 }
 
 .login_failure {

@@ -19,6 +19,7 @@ class Addtea extends CI_Controller
         
         $this->form_validation->set_rules('name', 'Name', 'required');
         $this->form_validation->set_rules('categories_ID' , 'Categories_ID', 'is_natural_no_zero');
+        $this->form_validation->set_rules('categories_ID' , 'Categories_ID', 'required');
 //        $this->form_validation->set_rules('taste', 'Taste' , 'required');
 //        $this->form_validation->set_rules('color', 'Color' , 'required');
 //        $this->form_validation->set_rules('body', 'Body' , 'required');

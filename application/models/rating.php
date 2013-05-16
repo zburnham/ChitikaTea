@@ -13,6 +13,8 @@ class Rating extends Base
 { 
     /**
      * Database table for persisting data.
+     * 
+     * @var string
      */
     protected $table = 'Ratings';
     
@@ -59,6 +61,20 @@ class Rating extends Base
     protected $tasters_ID;
     
     /**
+     * Any free-form notes.
+     *
+     * @var string
+     */
+    protected $notes;
+    
+    /**
+     * Time rating was entered.
+     *
+     * @var string
+     */
+    protected $timestamp;
+    
+    /**
      * Class constructor.  Extends initial prototype.
      * 
      * @return void
@@ -75,10 +91,11 @@ class Rating extends Base
             'color' => $this->input->post('color'),
             'taste' => $this->input->post('taste'),
             'tasters_ID' => $this->input->post('tasters_ID'),
-            'teas_ID'=> $this->input->post('teas_ID')
+            'teas_ID'=> $this->input->post('teas_ID'),
+            'notes' => $this->input->post('notes'),
         );
         
-        return $this->db->insert(self::TABLE, $data);
+        return $this->db->insert($this->table, $data);
     }
     
     public function getTeaAverages($teas_ID)
@@ -205,6 +222,42 @@ class Rating extends Base
     public function setTasters_ID($tasters_ID)
     {
         $this->tasters_ID = $tasters_ID;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getNotes()
+    {
+        return $this->notes;
+    }
+
+    /**
+     * @param string $notes
+     * @return \Rating
+     */
+    public function setNotes($notes)
+    {
+        $this->notes = $notes;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getTimestamp()
+    {
+        return $this->timestamp;
+    }
+
+    /**
+     * @param string $timestamp
+     * @return \Rating
+     */
+    public function setTimestamp($timestamp)
+    {
+        $this->timestamp = $timestamp;
         return $this;
     }
 }

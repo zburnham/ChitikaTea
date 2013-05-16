@@ -70,16 +70,23 @@ class Taster extends Base
      * 
      * @return boolean
      */
-    public function authenticate()
+    public function checkValidCredentials($login, $password)
     {
-        $login = $this->input->post('login');
-        $encryptedPassword = $this->encrypt->encode($this->input->post('password'));
-        
-        $query = $this->db->get_where($this->table, array('login' => $login, 'password' => $encryptedPassword));
+        $query = $this->db->get_where($this->table, array('login' => $login, 'password' => $password));
         if (0 < $query->num_rows()) {
             return true;
         }
         return false;
+    }
+    
+    public function getIdFromLogin($login)
+    {
+        $query = $this->db->get_where($this->table, array('login' => $login));
+        if (0 == $query->num_rows()) {
+            throw new \Exception("Taster not found.");
+        }
+        $result = $query->row();
+        return $result->ID;
     }
     
     /**

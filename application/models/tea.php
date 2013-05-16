@@ -13,6 +13,8 @@ class Tea extends Base
 {
     /**
      * Database table for persisting data.
+     * 
+     * @var string
      */
     protected $table = "Teas";
     
@@ -54,7 +56,7 @@ class Tea extends Base
             'name' => $this->input->post('name'),
             'categories_ID' => $this->input->post('categories_ID'),
         );
-        return $this->db->insert(self::TABLE, $data);
+        return $this->db->insert($this->table, $data);
     }
 
     /**
