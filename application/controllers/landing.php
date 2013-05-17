@@ -1,7 +1,16 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+/**
+ * landing.php
+ * Controller for default landing page.
+ * 
+ * @author zburnham
+ */
 
 class Landing extends MY_Controller
 {
+    /**
+     * Class constructor
+     */
     public function __construct()
     {
         parent::__construct();
@@ -10,6 +19,9 @@ class Landing extends MY_Controller
         $this->load->helper('url');
     }
     
+    /**
+     * Display default landing page.
+     */
     public function index()
     {
         $data = array();

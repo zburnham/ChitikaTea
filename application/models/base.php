@@ -45,9 +45,4 @@ class Base extends CI_Model
     {
         return $this->db->get(self::TABLE)->result_array();
     }
-    
-    /**
-     * TODO need to do central update function if possible, otherwise do 
-     * individual update functions in models
-     */
 }

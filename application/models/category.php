@@ -7,8 +7,6 @@
  * 
  */
 
-if (!class_exists('Base')) { include('base.php');}
-
 class Category extends Base
 {
     /**
@@ -40,6 +38,11 @@ class Category extends Base
         parent::__construct();
     }
     
+    /**
+     * Creates a new category.
+     * 
+     * @return bool
+     */
     public function create()
     {
         $data = array(
@@ -48,6 +51,11 @@ class Category extends Base
         return $this->db->insert(self::TABLE, $data);
     }
 
+    /**
+     * Returns information on all categories available.
+     * 
+     * @return array
+     */
     public function getList()
     {
         return $this->db->get($this->table)->result_array();

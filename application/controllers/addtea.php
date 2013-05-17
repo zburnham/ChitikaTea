@@ -1,7 +1,16 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+/**
+ * addtea.php
+ * Controller to add a new tea to the system.
+ * 
+ * @author zburnham
+ */
 
 class Addtea extends MY_Controller
 {
+    /**
+     * Class constructor.
+     */
     public function __construct()
     {
         parent::__construct();
@@ -14,6 +23,9 @@ class Addtea extends MY_Controller
         $this->load->library('tea_auth');
     }
     
+    /**
+     * Displays form to enter new tea.
+     */
     public function index()
     {
         if (!$this->tea_auth->check()) {

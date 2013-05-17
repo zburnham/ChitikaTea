@@ -1,7 +1,16 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+/**
+ * login.php
+ * Controller to allow registered user to authenticate.
+ * 
+ * @author zburnham
+ */
 
 class Login extends CI_Controller
 {
+    /**
+     * Class constructor.
+     */
     public function __construct()
     {
         parent::__construct();
@@ -13,6 +22,9 @@ class Login extends CI_Controller
         $this->load->helper('url');
     }
     
+    /**
+     * Displays login form.
+     */
     public function index()
     {
         $this->form_validation->set_rules('login', 'Login', 'required');

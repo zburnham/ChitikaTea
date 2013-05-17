@@ -1,7 +1,16 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+/**
+ * categories.php
+ * Controller to display categories to choose.
+ * 
+ * @author zburnham
+ */
 
 class Categories extends MY_Controller
 {
+    /**
+     * Class constructor.
+     */
     public function __construct()
     {
         parent::__construct();
@@ -10,6 +19,9 @@ class Categories extends MY_Controller
         $this->load->helper('url');
     }
     
+    /**
+     * Displays a list of categories.
+     */
     public function index()
     {
         $data = array();

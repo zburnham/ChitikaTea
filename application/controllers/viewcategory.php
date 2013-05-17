@@ -1,7 +1,16 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+/**
+ * viewcategory.php
+ * Controller to view all teas in a given category.
+ * 
+ * @author zburnham
+ */
 
 class Viewcategory extends CI_Controller
 {
+    /**
+     * Class constructor.
+     */
     public function __construct()
     {
         parent::__construct();
@@ -11,6 +20,9 @@ class Viewcategory extends CI_Controller
         $this->load->helper('url');
     }
     
+    /**
+     * Displays teas in a category.
+     */
     public function index()
     {
         $data = array();

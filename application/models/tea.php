@@ -7,8 +7,6 @@
  * 
  */
 
-if (!class_exists('Base')) { include('base.php');}
-
 class Tea extends Base
 {
     /**

@@ -1,7 +1,16 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+/**
+ * viewratings.php
+ * Controller to view all ratings from a particular taster.
+ * 
+ * @author zburnham
+ */
 
 class Viewratings extends MY_Controller
 {
+    /**
+     * Class constructor.
+     */
     public function __construct()
     {
         parent::__construct();
@@ -12,6 +21,9 @@ class Viewratings extends MY_Controller
         $this->load->model('taster');
     }
     
+    /**
+     * Displays ratings from one taster.
+     */
     public function index()
     {
         $data['taster'] = $this->taster->load($this->input->get('id'));

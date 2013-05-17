@@ -1,7 +1,16 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+/**
+ * viewtea.php
+ * Controller to display information on a selected tea.
+ * 
+ * @author zburnham
+ */
 
 class Viewtea extends MY_Controller
 {
+    /**
+     * Class constructor.
+     */
     public function __construct()
     {
         parent::__construct();
@@ -12,6 +21,9 @@ class Viewtea extends MY_Controller
         $this->load->helper('url');
     }
     
+    /**
+     * Displays information about a chosen tea.
+     */
     public function index()
     {
         $data['tea'] = $this->tea->load($this->input->get('id'));

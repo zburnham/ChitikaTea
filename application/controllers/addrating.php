@@ -1,7 +1,16 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+/**
+ * addrating.php
+ * Controller to add a new rating.
+ * 
+ * @author zburnham
+ */
 
 class Addrating extends MY_Controller
 {
+    /**
+     * Class constructor.
+     */
     public function __construct()
     {
         parent::__construct();
@@ -15,6 +24,9 @@ class Addrating extends MY_Controller
         $this->load->library('tea_auth');
     }
     
+    /**
+     * Displays form to create a new rating.
+     */
     public function index()
     {
         if (!$this->tea_auth->check()) {
